@@ -1,4 +1,8 @@
 package kodlamaio.ReCapProject.entities.concretes;
+
+import java.sql.Date;
+
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,37 +11,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="cars")
-public class Car {
-	
+@Table(name="rentals")
+public class Rental {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="model_year")
-	private int modelYear;
+	//private int carId;
 	
-	@Column(name="daily_price")
-	private int dailyPrice;
+	//private int customerId;
 	
-	@Column(name="description")
-	private String description;
+	@Column(name="rent_date")
+	private Date rentDate;
 	
-	@OneToOne()
-	@JoinColumn(name="brand_id")
-	private Brand brand;
+	@Column(name="return_date")
+	private Date returnDate;
 	
-	@OneToOne()
-	@JoinColumn(name="color_id")
-	private Color color;
+	@OneToOne
+	@JoinColumn(name="car_id")
+	private Car car;
+	
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customer;
+	
 	
 }

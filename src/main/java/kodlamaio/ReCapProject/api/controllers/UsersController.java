@@ -6,43 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import kodlamaio.ReCapProject.business.abstracts.BrandService;
+import kodlamaio.ReCapProject.business.abstracts.UserService;
+import kodlamaio.ReCapProject.core.entities.User;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
-import kodlamaio.ReCapProject.entities.concretes.Brand;
 
 @RestController
-@RequestMapping("/api/brands")
-public class BrandsController {
+@RequestMapping("/api/users")
+public class UsersController {
 
-	private BrandService brandService;
+	private UserService userService;
 
 	@Autowired
-	public BrandsController(BrandService brandService) {
+	public UsersController(UserService userService) {
 		super();
-		this.brandService = brandService;
+		this.userService = userService;
 	}
 	
 	@GetMapping("/getAll")
-	public DataResult<List<Brand>> getAll(){
-		return this.brandService.getAll();
+	public DataResult<List<User>> getAll(){
+		return this.userService.getAll();
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Brand brand) {
-		return this.brandService.add(brand);
-		
+	public Result add(@RequestBody User user) {
+		return this.userService.add(user);
 	}
-	
-	@GetMapping("/getById")
-	public DataResult<Brand> getById(@RequestParam int id) {
-		return this.brandService.getById(id);
-	}
-	
-	
 	
 }

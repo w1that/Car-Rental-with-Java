@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import kodlamaio.ReCapProject.business.abstracts.BrandService;
+import kodlamaio.ReCapProject.core.utilities.results.DataResult;
+import kodlamaio.ReCapProject.core.utilities.results.Result;
+import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
+import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.BrandDao;
 import kodlamaio.ReCapProject.entities.concretes.Brand;
 
@@ -21,14 +26,22 @@ public class BrandManager implements BrandService{
 	}
 
 	@Override
-	public List<Brand> getAll() {
-		return this.brandDao.findAll();
+	public DataResult<List<Brand>> getAll() {
+		return new SuccessDataResult<List<Brand>>(this.brandDao.findAll());
 	}
 
 	@Override
-	public void add(Brand brand) {
+	public Result add(Brand brand) {
 		this.brandDao.save(brand);
+		return new SuccessResult("eklendi");
 	}
+
+	@Override
+	public DataResult<Brand> getById(int id) {
+		return new SuccessDataResult<Brand>(this.brandDao.getById(id));
+	}
+	
+	
 	
 	
 }
