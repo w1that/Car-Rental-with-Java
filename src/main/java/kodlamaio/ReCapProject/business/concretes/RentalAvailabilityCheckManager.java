@@ -11,7 +11,7 @@ public class RentalAvailabilityCheckManager implements RentalAvailabilityCheckSe
 	@Override
 	public boolean checkIfRentalAvailable(Rental rental) {
 		if(rental.getReturnDate() ==null) {
-			return false;
+			return true;
 		}
 		return true;
 	}

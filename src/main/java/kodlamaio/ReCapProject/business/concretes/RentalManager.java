@@ -1,5 +1,6 @@
 package kodlamaio.ReCapProject.business.concretes;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -34,6 +35,7 @@ public class RentalManager implements RentalService{
 	@Override
 	public Result add(Rental rental) {
 		if(this.rentalAvailabilityCheckService.checkIfRentalAvailable(rental)) {
+			
 			this.rentalDao.save(rental);
 			return new SuccessResult("rental eklendi");
 		}

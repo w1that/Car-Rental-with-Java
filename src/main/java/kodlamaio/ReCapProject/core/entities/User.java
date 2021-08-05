@@ -1,13 +1,18 @@
 package kodlamaio.ReCapProject.core.entities;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import kodlamaio.ReCapProject.entities.concretes.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +40,8 @@ public class User {
 	private String password;
 	
 	
+	/*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,optional = false)
+	private Customer customer;*/
 	
 
 }

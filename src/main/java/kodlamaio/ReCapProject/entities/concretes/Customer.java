@@ -3,6 +3,7 @@ package kodlamaio.ReCapProject.entities.concretes;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="customers")
-public class Customer extends User{
+public class Customer{
 	
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
@@ -29,8 +30,7 @@ public class Customer extends User{
 	@Column(name="company_name")
 	private String companyName;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
 	private User user;
-
 }
