@@ -11,6 +11,7 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.CustomerDao;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
+import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 
 @Service
 public class CustomerManager implements CustomerService{
@@ -31,6 +32,11 @@ public class CustomerManager implements CustomerService{
 	public Result add(Customer customer) {
 		this.customerDao.save(customer);
 		return new SuccessResult("müşteri eklendi");
+	}
+
+	@Override
+	public DataResult<List<CustomerDetailsDto>> getCustomerDetails() {
+		return new SuccessDataResult<List<CustomerDetailsDto>>(this.customerDao.getCustomersDetails());
 	}
 
 	

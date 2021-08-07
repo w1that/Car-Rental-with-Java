@@ -11,6 +11,7 @@ import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
+import kodlamaio.ReCapProject.entities.dtos.UserDto;
 
 @Service
 public class UserManager implements UserService{
@@ -31,6 +32,11 @@ public class UserManager implements UserService{
 	public Result add(User user) {
 		this.userDao.save(user);
 		return new SuccessResult("kullanıcı eklendi");
+	}
+
+	@Override
+	public DataResult<List<UserDto>> getUsersWithDetails() {
+		return new SuccessDataResult<List<UserDto>>(this.userDao.getUserDetails());
 	}
 	
 }

@@ -13,6 +13,7 @@ import kodlamaio.ReCapProject.business.abstracts.CustomerService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
+import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -34,6 +35,11 @@ public class CustomersController {
 	@PostMapping("/add")
 	public Result add(@RequestBody Customer customer) {
 		return this.customerService.add(customer);
+	}
+	
+	@GetMapping("/getCustomerDetails")
+	public DataResult<List<CustomerDetailsDto>> getCustomerDetails(){
+		return this.customerService.getCustomerDetails();
 	}
 	
 	

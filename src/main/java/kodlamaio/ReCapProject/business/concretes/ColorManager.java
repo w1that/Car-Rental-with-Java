@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import kodlamaio.ReCapProject.business.abstracts.ColorPropertiesCheckService;
 import kodlamaio.ReCapProject.business.abstracts.ColorService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;

@@ -1,6 +1,5 @@
 package kodlamaio.ReCapProject.core.entities;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,17 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="users")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","customer"})
 public class User {
 	
 	@Id
@@ -39,9 +35,9 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-	
-//	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,optional = false)
-//	private Customer customer;
+	@JsonIgnoreProperties
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY,optional = false)
+	private Customer customer;
 	
 
 }

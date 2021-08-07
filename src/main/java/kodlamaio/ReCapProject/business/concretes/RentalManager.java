@@ -1,10 +1,7 @@
 package kodlamaio.ReCapProject.business.concretes;
 
-import java.sql.Date;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;

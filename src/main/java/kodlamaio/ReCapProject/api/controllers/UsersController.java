@@ -13,6 +13,7 @@ import kodlamaio.ReCapProject.business.abstracts.UserService;
 import kodlamaio.ReCapProject.core.entities.User;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
+import kodlamaio.ReCapProject.entities.dtos.UserDto;
 
 @RestController
 @RequestMapping("/api/users")
@@ -34,6 +35,11 @@ public class UsersController {
 	@PostMapping("/add")
 	public Result add(@RequestBody User user) {
 		return this.userService.add(user);
+	}
+	
+	@GetMapping("/getUsersWithDetails")
+	public DataResult<List<UserDto>> getUsersWithDetails() {
+		return this.userService.getUsersWithDetails();
 	}
 	
 }

@@ -29,7 +29,7 @@ public class Customer{
 	@Column(name="company_name")
 	private String companyName;
 	
-//	@OneToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name="user_id")
-//	private User user;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
 }
