@@ -14,6 +14,7 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.CarDao;
 import kodlamaio.ReCapProject.entities.concretes.Car;
+import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
 
 @Service
 public class CarManager implements CarService {
@@ -70,6 +71,17 @@ public class CarManager implements CarService {
 		return new SuccessResult("araç başarıyla silindi");
 		
 	}
+
+	@Override
+	public DataResult<List<CarDetailsDto>> getCarDetails() {
+		return new SuccessDataResult<List<CarDetailsDto>>(this.carDao.getCarDetails());
+	}
+
+	/*@Override
+	public Result addNewCar(int id,int modelYear, int dailyPrice,String description, int brandId, int colorId) {
+		this.carDao.addNewCar(id, modelYear, dailyPrice,description, brandId, colorId);
+		return new SuccessResult("araç başarıyla eklendi v2");
+	}*/
 	
 	
 	

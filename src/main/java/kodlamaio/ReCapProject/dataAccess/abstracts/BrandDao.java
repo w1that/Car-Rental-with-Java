@@ -6,4 +6,5 @@ import kodlamaio.ReCapProject.entities.concretes.Brand;
 
 public interface BrandDao extends JpaRepository<Brand, Integer> {
 
+	Brand findById(int id);
 }

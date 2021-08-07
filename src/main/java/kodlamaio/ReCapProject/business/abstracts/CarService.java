@@ -6,6 +6,7 @@ import java.util.List;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Car;
+import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
 
 public interface CarService {
 	
@@ -17,4 +18,7 @@ public interface CarService {
 
 	DataResult<List<Car>> getCarsByBrandId(int id);
 	DataResult<List<Car>> getCarsByColorId(int id);
+	
+	DataResult<List<CarDetailsDto>> getCarDetails();
+	/*Result addNewCar(int id, int modelYear,int dailyPrice,String description , int brandId, int colorId);*/
 }

@@ -40,8 +40,8 @@ public class User {
 	private String password;
 	
 	
-	/*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,optional = false)
-	private Customer customer;*/
+//	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,optional = false)
+//	private Customer customer;
 	
 
 }

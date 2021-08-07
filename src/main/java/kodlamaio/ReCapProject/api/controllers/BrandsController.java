@@ -40,7 +40,7 @@ public class BrandsController {
 	
 	@GetMapping("/getById")
 	public DataResult<Brand> getById(@RequestParam int id) {
-		return this.brandService.getById(id);
+		return this.brandService.getByBrandId(id);
 	}
 	
 	

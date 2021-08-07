@@ -37,8 +37,9 @@ public class BrandManager implements BrandService{
 	}
 
 	@Override
-	public DataResult<Brand> getById(int id) {
-		return new SuccessDataResult<Brand>(this.brandDao.getById(id));
+	public DataResult<Brand> getByBrandId(int id) {
+		
+		return new SuccessDataResult<Brand>(this.brandDao.findById(id));     //?
 	}
 	
 	

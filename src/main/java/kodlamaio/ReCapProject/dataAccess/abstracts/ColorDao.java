@@ -7,4 +7,5 @@ import kodlamaio.ReCapProject.entities.concretes.Color;
 
 public interface ColorDao extends JpaRepository<Color, Integer> {
 
+	Color findById(int id);
 }

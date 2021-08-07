@@ -13,6 +13,7 @@ import kodlamaio.ReCapProject.business.abstracts.CarService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Car;
+import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
 
 @RestController
 @RequestMapping("/api/cars")
@@ -51,11 +52,20 @@ public class CarsController {
 		return this.carService.getCarById(id);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/delete")
 	public Result deleteCarById(@RequestParam int id) {
 		return this.carService.deleteById(id);
 	}
 
+	@GetMapping("/getCarDetails")
+	public DataResult<List<CarDetailsDto>> getCarDetails(){
+		return this.carService.getCarDetails();
+	}
+	
+	/*@PostMapping("addNewCar")
+	public Result addNewCar(@RequestParam int id,@RequestParam int modelYear,@RequestParam int dailyPrice,@RequestParam String description,@RequestParam int brandId,@RequestParam int colorId) {
+		return this.carService.addNewCar(id,modelYear,dailyPrice,description, brandId, colorId);
+	}*/
 	
 
 	

@@ -11,6 +11,6 @@ public interface BrandService {
 	
 	DataResult<List<Brand>>  getAll();
 	Result  add(Brand brand);
-	DataResult<Brand> getById(int id);
+	DataResult<Brand> getByBrandId(int id);
 
 }

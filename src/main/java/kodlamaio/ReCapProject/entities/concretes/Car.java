@@ -7,6 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,6 +37,8 @@ public class Car {
 	private String description;
 	
 	@OneToOne()
+	@JsonIgnore
+	@JsonProperty(value = "brand.name")
 	@JoinColumn(name="brand_id")
 	private Brand brand;
 	
@@ -40,4 +46,12 @@ public class Car {
 	@JoinColumn(name="color_id")
 	private Color color;
 	
+	public Car(int id, int modelYear, int dailyPrice, String description, int brandId, int colorId) {
+		this.id = id;
+		this.modelYear = modelYear;
+		this.dailyPrice=dailyPrice;
+		this.description =description;
+		this.brand.setId(brandId);
+		this.color.setId(colorId);
+	}
 }
