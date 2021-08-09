@@ -2,6 +2,7 @@ package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
@@ -35,9 +36,17 @@ public class CustomerManager implements CustomerService{
 	}
 
 	@Override
+	public Result deleteByCustomerId(int id) {
+		this.customerDao.deleteById(id);
+		return new SuccessResult("Müşteri silindi");
+	}
+
+	@Override
 	public DataResult<List<CustomerDetailsDto>> getCustomerDetails() {
 		return new SuccessDataResult<List<CustomerDetailsDto>>(this.customerDao.getCustomersDetails());
 	}
 
 	
 }
+
+

@@ -10,15 +10,9 @@ import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
 
-//	private String firstName;
-//	private String lastName;
-//	private String email;
-//	private String password;
-//	private String companyName;
 	
-	
-	@Query("Select new kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto(c.id,u.firstName, u.lastName, u.email, u.password, c.companyName)"
-			+ "From Customer c Inner Join c.user u")
+	@Query("Select new kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto(c.id,c.firstName, c.lastName, c.email, c.password, c.companyName)"
+			+ "From Customer c ")
 	List<CustomerDetailsDto> getCustomersDetails();
 	
 }

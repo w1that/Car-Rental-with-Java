@@ -13,6 +13,7 @@ import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
+import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 
 @RestController
 @RequestMapping("/api/rentals")
@@ -36,4 +37,9 @@ public class RentalsController {
 	public Result add(@RequestBody Rental rental) {
 		return this.rentalService.add(rental);
 	}
+	
+//	@GetMapping("/getRentalDetails")
+//	public DataResult<List<RentalDetailsDto>> getRentalDetails(){
+//		return this.rentalService.getRentalDetails();
+//	}
 }

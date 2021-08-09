@@ -1,5 +1,9 @@
 package kodlamaio.ReCapProject.business.concretes;
 
+import java.util.Objects;
+
+import javax.validation.constraints.Null;
+
 import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
@@ -10,8 +14,8 @@ public class RentalAvailabilityCheckManager implements RentalAvailabilityCheckSe
 
 	@Override
 	public boolean checkIfRentalAvailable(Rental rental) {
-		if(rental.getReturnDate() ==null) {
-			return true;
+		if(Objects.isNull(rental.getReturnDate())) {
+			return false;
 		}
 		return true;
 	}
