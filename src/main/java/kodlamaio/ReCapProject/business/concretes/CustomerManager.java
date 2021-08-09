@@ -2,9 +2,7 @@ package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;

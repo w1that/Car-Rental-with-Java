@@ -2,10 +2,8 @@ package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import kodlamaio.ReCapProject.business.abstracts.CarImageService;
 import kodlamaio.ReCapProject.core.utilities.imageUpload.ImageUploadService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
@@ -18,27 +16,32 @@ import kodlamaio.ReCapProject.entities.concretes.CarImage;
 @Service
 public class CarImageManager implements CarImageService{
 
-	private CarImageDao carImageDao;
-	private ImageUploadService imageUploadService;
-
-	public CarImageManager(CarImageDao carImageDao,ImageUploadService imageUploadService) {
+	CarImageDao carImageDao;
+	ImageUploadService imageUploadService;
+	
+	
+	
+	public CarImageManager(CarImageDao carImageDao, ImageUploadService imageUploadService) {
 		super();
 		this.carImageDao = carImageDao;
-		this.imageUploadService=imageUploadService;
+		this.imageUploadService = imageUploadService;
 	}
 
 	@Override
-	public Result add(CarImage carImage, MultipartFile imageFile) {
-		Map<String,String> uploadImage = this.imageUploadService.uploadImageFile(imageFile).getData();
-		carImage.setImagePath(uploadImage.get("url"));
+	public Result upload(CarImage carImage, MultipartFile file) {
+		@SuppressWarnings("unchecked")
+		Map<String,String> uploadedImage=(Map<String,String>)this.imageUploadService.upload(file).getData();
+		carImage.setImagePath(uploadedImage.get("url"));
 		this.carImageDao.save(carImage);
-		return new SuccessResult("resim eklendi");
+		
+		return new SuccessResult();
 	}
 
 	@Override
 	public DataResult<List<CarImage>> getAll() {
 		return new SuccessDataResult<List<CarImage>>(this.carImageDao.findAll());
 	}
+
 
 	
 	

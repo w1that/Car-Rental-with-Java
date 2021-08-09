@@ -10,6 +10,7 @@ import kodlamaio.ReCapProject.entities.concretes.CarImage;
 
 public interface CarImageService {
 
-	Result add(CarImage carImage, MultipartFile imageFile);
+	Result upload (CarImage carImage,MultipartFile file);
 	DataResult<List<CarImage>> getAll();
+	
 }

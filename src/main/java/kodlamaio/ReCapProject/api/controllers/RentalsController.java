@@ -13,7 +13,6 @@ import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
-import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 
 @RestController
 @RequestMapping("/api/rentals")

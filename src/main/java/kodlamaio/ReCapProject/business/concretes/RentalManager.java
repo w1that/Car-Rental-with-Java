@@ -1,9 +1,7 @@
 package kodlamaio.ReCapProject.business.concretes;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
@@ -15,8 +13,6 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.RentalDao;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
-import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
-
 @Service
 public class RentalManager implements RentalService{
 	

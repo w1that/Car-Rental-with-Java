@@ -1,11 +1,7 @@
 package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.Objects;
-
-import javax.validation.constraints.Null;
-
 import org.springframework.stereotype.Service;
-
 import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
 

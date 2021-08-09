@@ -2,6 +2,7 @@ package kodlamaio.ReCapProject.entities.concretes;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,8 +45,8 @@ public class Car {
 	@JoinColumn(name="color_id")
 	private Color color;
 	
-	@OneToMany(mappedBy = "car")
-	private List<CarImage> carImages;
+	@OneToOne(mappedBy = "car",fetch=FetchType.LAZY)
+	private CarImage carImage;        //burası değiştirilecek
 	
 	public Car(int id, int modelYear, int dailyPrice, String description, int brandId, int colorId) {
 		this.id = id;

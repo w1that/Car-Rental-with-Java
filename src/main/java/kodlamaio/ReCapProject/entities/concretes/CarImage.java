@@ -1,13 +1,17 @@
 package kodlamaio.ReCapProject.entities.concretes;
 
 import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -28,11 +32,11 @@ public class CarImage {
 	@Column(name="image_path")
 	private String imagePath;
 	
-	@Column(name="date")
-	private Date date;
+	@Column(name="created_at")
+	private LocalDate createdAt = LocalDate.now();
 	
-	@ManyToOne
-	@JoinColumn(name="car_id")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="car_id" )
 	private Car car;
 
 }
