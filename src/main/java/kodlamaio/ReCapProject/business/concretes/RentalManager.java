@@ -1,18 +1,18 @@
 package kodlamaio.ReCapProject.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
-import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.RentalDao;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
+import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 @Service
 public class RentalManager implements RentalService{
 	
@@ -33,23 +33,20 @@ public class RentalManager implements RentalService{
 	}
 
 	@Override
-	public Result add(Rental rental) {
-		if(rental.getReturnDate()!=null && rental.getRentDate()==null) {
-			
-			this.rentalDao.save(rental);
-			return new SuccessResult("rental eklendi");
-		}
-		else {
-			return new ErrorResult("araç şu anda kiralanamaz" +String.valueOf(Objects.isNull(rental.getReturnDate())));
-		}
+	public Result add(Rental rental) {	
+		rental.setRentDate(LocalDate.now());
+		this.rentalDao.save(rental);
+		return new SuccessResult("rental eklendi");
 		
 	}
 
+	@Override
+	public DataResult<List<RentalDetailsDto>> getRentalDetail() {
+		return new SuccessDataResult<List<RentalDetailsDto>>(this.rentalDao.getRentalDetail());
+	}
+
 	
-//	@Override
-//	public DataResult<List<RentalDetailsDto>> getRentalDetails() {
-//		return new SuccessDataResult<List<RentalDetailsDto>>(this.rentalDao.getRentalsDetails());
-//	}
+	
 	
 	
 	

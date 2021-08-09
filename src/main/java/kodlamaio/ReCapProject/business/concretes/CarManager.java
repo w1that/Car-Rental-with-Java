@@ -77,11 +77,8 @@ public class CarManager implements CarService {
 		return new SuccessDataResult<List<CarDetailsDto>>(this.carDao.getCarDetails());
 	}
 
-	/*@Override
-	public Result addNewCar(int id,int modelYear, int dailyPrice,String description, int brandId, int colorId) {
-		this.carDao.addNewCar(id, modelYear, dailyPrice,description, brandId, colorId);
-		return new SuccessResult("araç başarıyla eklendi v2");
-	}*/
+	
+	
 	
 	
 	

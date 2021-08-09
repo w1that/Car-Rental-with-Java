@@ -12,6 +12,7 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.CarImageDao;
 import kodlamaio.ReCapProject.entities.concretes.CarImage;
+import kodlamaio.ReCapProject.entities.dtos.CarImageDetailsDto;
 
 @Service
 public class CarImageManager implements CarImageService{
@@ -40,6 +41,16 @@ public class CarImageManager implements CarImageService{
 	@Override
 	public DataResult<List<CarImage>> getAll() {
 		return new SuccessDataResult<List<CarImage>>(this.carImageDao.findAll());
+	}
+
+	@Override
+	public DataResult<List<CarImage>> getByCarId(int id) {
+		return new SuccessDataResult<List<CarImage>>(this.carImageDao.getByCarId(id));
+	}
+
+	@Override
+	public DataResult<List<CarImageDetailsDto>> getCarImageDetails() {
+		return new SuccessDataResult<List<CarImageDetailsDto>>(this.carImageDao.getCarImageDetails());
 	}
 
 

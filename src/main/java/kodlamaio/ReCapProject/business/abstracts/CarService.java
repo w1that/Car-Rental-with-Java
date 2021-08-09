@@ -15,9 +15,9 @@ public interface CarService {
 	Result add(Car car);
 	Result deleteById(int id);
 	
-
 	DataResult<List<Car>> getCarsByBrandId(int id);
 	DataResult<List<Car>> getCarsByColorId(int id);
+	
 	
 	DataResult<List<CarDetailsDto>> getCarDetails();
 	/*Result addNewCar(int id, int modelYear,int dailyPrice,String description , int brandId, int colorId);*/

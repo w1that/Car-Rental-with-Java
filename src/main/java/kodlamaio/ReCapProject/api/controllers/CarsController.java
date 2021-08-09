@@ -62,10 +62,7 @@ public class CarsController {
 		return this.carService.getCarDetails();
 	}
 	
-	/*@PostMapping("addNewCar")
-	public Result addNewCar(@RequestParam int id,@RequestParam int modelYear,@RequestParam int dailyPrice,@RequestParam String description,@RequestParam int brandId,@RequestParam int colorId) {
-		return this.carService.addNewCar(id,modelYear,dailyPrice,description, brandId, colorId);
-	}*/
+	
 	
 
 	

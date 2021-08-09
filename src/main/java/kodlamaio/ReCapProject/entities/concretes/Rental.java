@@ -1,6 +1,7 @@
 package kodlamaio.ReCapProject.entities.concretes;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,16 +25,14 @@ public class Rental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	
-	//private int carId;
-	
-	//private int customerId;
-	
+	//TODO şu rental'a eklemek için bir dto oluştursana. Spring videoları çeken bir adam vardı onu da izle. Her şeye dto yazıyordu
+	//TODO api'da sadece car-images-controller'da getByCarImageDetails çalışmıyor. ona bak gerekirse dto yazmaya çalış
+	//*************************************************************
 	@Column(name="rent_date")
-	private Date rentDate;
+	private LocalDate rentDate;
 	
 	@Column(name="return_date")
-	private Date returnDate;
+	private LocalDate returnDate;
 	
 	@OneToOne
 	@JoinColumn(name="car_id")

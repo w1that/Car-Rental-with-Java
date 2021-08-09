@@ -26,7 +26,10 @@ public class Color {
 	@Column(name="name")
 	private String name;
 	
-	/*@OneToOne(mappedBy = "color")           //mappedby non-owning side'da kullanılır. owning side foreignkey'in olduğu entity'dir
-	private Car car;*/
+	
+//	@OneToMany
+//	@JsonIgnore
+//	 @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+//	private List<Car> cars;
 
 }

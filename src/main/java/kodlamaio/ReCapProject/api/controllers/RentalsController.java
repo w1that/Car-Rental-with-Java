@@ -1,11 +1,15 @@
 package kodlamaio.ReCapProject.api.controllers;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -13,6 +17,7 @@ import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
+import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 
 @RestController
 @RequestMapping("/api/rentals")
@@ -37,8 +42,8 @@ public class RentalsController {
 		return this.rentalService.add(rental);
 	}
 	
-//	@GetMapping("/getRentalDetails")
-//	public DataResult<List<RentalDetailsDto>> getRentalDetails(){
-//		return this.rentalService.getRentalDetails();
-//	}
+	@GetMapping("/getRentalDetail")
+	public DataResult<List<RentalDetailsDto>> getRentalDetail(){
+		return this.rentalService.getRentalDetail();
+	}
 }

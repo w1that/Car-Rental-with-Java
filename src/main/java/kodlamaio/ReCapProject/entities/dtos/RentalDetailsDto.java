@@ -1,9 +1,9 @@
 package kodlamaio.ReCapProject.entities.dtos;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
+import kodlamaio.ReCapProject.entities.concretes.Customer;
 import lombok.AllArgsConstructor;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,20 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RentalDetailsDto {
 
-	private String brandName;
-	private String colorName;
+	private int id;
+	private LocalDate rentDate;
+	private LocalDate returnDate;
 	private int dailyPrice;
 	private String description;
-	private int modelYear;
-	
-	private String customerFirstName;
-	private String customerLastName;
-	private String customerCompany;
-	private String customerEmail;
-	private String customerPassword;
-	
-	private Date rentDate;
-	private Date returnDate;
-	
-	
+	private Customer customer;
 }

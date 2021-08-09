@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import kodlamaio.ReCapProject.entities.concretes.Car;
+import kodlamaio.ReCapProject.entities.concretes.CarImage;
 import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
 
 public interface CarDao extends JpaRepository<Car, Integer>  {
@@ -18,9 +19,5 @@ public interface CarDao extends JpaRepository<Car, Integer>  {
 			+ "From Car c Inner Join c.brand b Inner Join c.color co")
 	List<CarDetailsDto> getCarDetails();
 	
-//(String description, int dailyPrice, int modelYear, int brandId, int colorId)
-
-//	@Query("Insert Into cars()")
-//	void addNewCar(String description, int dailyPrice, int modelYear, int brandId, int colorId);
 	
 }

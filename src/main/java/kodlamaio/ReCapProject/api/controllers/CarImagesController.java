@@ -2,23 +2,21 @@ package kodlamaio.ReCapProject.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import kodlamaio.ReCapProject.business.abstracts.CarImageService;
 import kodlamaio.ReCapProject.business.abstracts.CarService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Car;
 import kodlamaio.ReCapProject.entities.concretes.CarImage;
+import kodlamaio.ReCapProject.entities.dtos.CarImageDetailsDto;
 
 
 @RestController
@@ -26,13 +24,13 @@ import kodlamaio.ReCapProject.entities.concretes.CarImage;
 @CrossOrigin
 public class CarImagesController {
 
-	private CarImageService imageService;
+	private CarImageService carImageService;
 	private CarService carService;
 
 	@Autowired
-	public CarImagesController(CarImageService imageService,CarService carService) {
+	public CarImagesController(CarImageService carImageService,CarService carService) {
 		super();
-		this.imageService = imageService;
+		this.carImageService = carImageService;
 		this.carService = carService;
 	}
 
@@ -41,13 +39,22 @@ public class CarImagesController {
 		Car car = this.carService.getCarById(id).getData();
 		CarImage carImage = new CarImage();
 		carImage.setCar(car);
-		return this.imageService.upload(carImage, imageFile);
+		return this.carImageService.upload(carImage, imageFile);
 		
 	}
 	
 	@GetMapping(value="/getAll")
 	public DataResult<List<CarImage>> getAll(){
-		return this.imageService.getAll();
+		return this.carImageService.getAll();
 	}
 	
+	@GetMapping(value="/getByCarId")
+	public DataResult<List<CarImage>> getByCarId(@RequestParam int id) {
+		return this.carImageService.getByCarId(id);
+	}
+	
+	@GetMapping(value="getByCarImageDetails")
+	public DataResult<List<CarImageDetailsDto>> getCarImageDetails(){
+		return this.carImageService.getCarImageDetails();
+	}
 }
