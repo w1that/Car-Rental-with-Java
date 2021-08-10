@@ -26,10 +26,4 @@ public class Color {
 	@Column(name="name")
 	private String name;
 	
-	
-//	@OneToMany
-//	@JsonIgnore
-//	 @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-//	private List<Car> cars;
-
 }

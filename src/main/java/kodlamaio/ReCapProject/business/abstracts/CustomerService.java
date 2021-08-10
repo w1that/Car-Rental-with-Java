@@ -10,7 +10,8 @@ import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 public interface CustomerService {
 
 	DataResult<List<Customer>> getAll();
-	Result add(Customer customer);
+	Result sendActivationCode(Customer customer);
+	Result activateCustomer(String enteredCode, int customerId);
 	Result deleteByCustomerId(int id);
 	
 	DataResult<List<CustomerDetailsDto>> getCustomerDetails();

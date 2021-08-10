@@ -2,7 +2,10 @@ package kodlamaio.ReCapProject.dataAccess.abstracts;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.ReCapProject.entities.concretes.Customer;
@@ -15,4 +18,8 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 			+ "From Customer c ")
 	List<CustomerDetailsDto> getCustomersDetails();
 	
+	@Transactional
+	@Modifying
+	@Query("update Customer c set c.isActivated=true where c.id=:id ")
+	void setActivated(int id);
 }

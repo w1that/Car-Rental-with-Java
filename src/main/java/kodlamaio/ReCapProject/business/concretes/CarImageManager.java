@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kodlamaio.ReCapProject.business.abstracts.CarImageService;
 import kodlamaio.ReCapProject.core.utilities.imageUpload.ImageUploadService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
+import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
@@ -29,13 +30,18 @@ public class CarImageManager implements CarImageService{
 	}
 
 	@Override
-	public Result upload(CarImage carImage, MultipartFile file) {
-		@SuppressWarnings("unchecked")
-		Map<String,String> uploadedImage=(Map<String,String>)this.imageUploadService.upload(file).getData();
-		carImage.setImagePath(uploadedImage.get("url"));
-		this.carImageDao.save(carImage);
+	public Result upload(int carId,CarImage carImage, MultipartFile file) {
 		
-		return new SuccessResult();
+		if(this.carImageDao.getByCarId(carId).size()<5) {
+			@SuppressWarnings("unchecked")
+			Map<String,String> uploadedImage=(Map<String,String>)this.imageUploadService.upload(file).getData();
+			carImage.setImagePath(uploadedImage.get("url"));
+			this.carImageDao.save(carImage);
+			
+			return new SuccessResult();
+		}
+		return new ErrorResult("en fazla 5 resim olabilir");
+		
 	}
 
 	@Override
@@ -53,7 +59,10 @@ public class CarImageManager implements CarImageService{
 		return new SuccessDataResult<List<CarImageDetailsDto>>(this.carImageDao.getCarImageDetails());
 	}
 
+	@Override
+	public Result deleteById(int id) {
+		this.carImageDao.deleteById(id);
+		return new SuccessResult("resim silindi");
+	}
 
-	
-	
 }

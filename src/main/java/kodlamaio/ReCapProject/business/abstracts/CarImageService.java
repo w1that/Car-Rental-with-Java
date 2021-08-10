@@ -11,8 +11,9 @@ import kodlamaio.ReCapProject.entities.dtos.CarImageDetailsDto;
 
 public interface CarImageService {
 
-	Result upload (CarImage carImage,MultipartFile file);
+	Result upload (int carId,CarImage carImage,MultipartFile file);
 	DataResult<List<CarImage>> getAll();
+	Result deleteById(int id);
 	
 	DataResult<List<CarImage>> getByCarId(int id);
 	DataResult<List<CarImageDetailsDto>> getCarImageDetails();

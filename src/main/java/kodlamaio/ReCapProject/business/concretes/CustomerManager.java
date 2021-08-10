@@ -1,10 +1,15 @@
 package kodlamaio.ReCapProject.business.concretes;
 
-import java.util.List;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
+import kodlamaio.ReCapProject.business.checks.abstracts.CustomerPropertiesCheckService;
+import kodlamaio.ReCapProject.core.utilities.emailSender.ActivatorService;
+import kodlamaio.ReCapProject.core.utilities.emailSender.EmailSenderService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
+import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
@@ -16,10 +21,18 @@ import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 public class CustomerManager implements CustomerService{
 
 	private CustomerDao customerDao;
-
-	public CustomerManager(CustomerDao customerDao) {
+	private CustomerPropertiesCheckService customerPropertiesCheckService;
+	private EmailSenderService emailService;
+	private ActivatorService activatorService;
+	
+	@Autowired
+	public CustomerManager(CustomerDao customerDao, CustomerPropertiesCheckService customerPropertiesCheckService
+			,EmailSenderService emailService, ActivatorService activatorService) {
 		super();
 		this.customerDao = customerDao;
+		this.customerPropertiesCheckService=customerPropertiesCheckService;
+		this.emailService=emailService;
+		this.activatorService=activatorService;
 	}
 
 	@Override
@@ -28,11 +41,32 @@ public class CustomerManager implements CustomerService{
 	}
 
 	@Override
-	public Result add(Customer customer) {
+	public Result sendActivationCode(Customer customer) {
+		String activationCode = activatorService.generateActivationCode();
+		customer.setActivationCode(activationCode);
+		
+		emailService.sendSimpleEmail(
+				customer.getEmail(),
+				"http://localhost:8080/swagger-ui.html#/customers-controller/"+activationCode,
+				"aktivasyon kodu"
+				); 
 		this.customerDao.save(customer);
-		return new SuccessResult("müşteri eklendi");
+		System.out.println(activationCode);
+		return new SuccessResult("aktivasyon kodu gönderildi: " + customer.getEmail());
+			
 	}
-
+	
+	@Override
+	public Result activateCustomer(String enteredCode ,int customerId) {
+		if(enteredCode.equals(this.customerDao.getById(customerId).getActivationCode())) {
+			this.customerDao.setActivated(customerId);
+			return new SuccessResult("kullanıcı aktif edildi");
+		}
+		
+		return new ErrorResult("girilen kod eşleşmedi");
+		
+	}
+	
 	@Override
 	public Result deleteByCustomerId(int id) {
 		this.customerDao.deleteById(id);
@@ -44,7 +78,6 @@ public class CustomerManager implements CustomerService{
 		return new SuccessDataResult<List<CustomerDetailsDto>>(this.customerDao.getCustomersDetails());
 	}
 
-	
 }
 
 

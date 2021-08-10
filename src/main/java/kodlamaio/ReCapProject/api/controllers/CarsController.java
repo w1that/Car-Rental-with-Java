@@ -62,8 +62,4 @@ public class CarsController {
 		return this.carService.getCarDetails();
 	}
 	
-	
-	
-
-	
 }

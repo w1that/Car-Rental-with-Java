@@ -41,8 +41,4 @@ public class BrandManager implements BrandService{
 		
 		return new SuccessDataResult<Brand>(this.brandDao.findById(id));     //?
 	}
-	
-	
-	
-	
 }

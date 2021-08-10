@@ -26,8 +26,4 @@ public class Brand {
 	@Column(name="name")
 	private String name;
 	
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "brand")
-//	private Set<Car> cars;
-	
 }

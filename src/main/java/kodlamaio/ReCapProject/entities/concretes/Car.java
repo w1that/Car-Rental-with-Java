@@ -42,5 +42,4 @@ public class Car {
 	@JoinColumn(name="color_id")
 	private Color color;
 	
-	
 }

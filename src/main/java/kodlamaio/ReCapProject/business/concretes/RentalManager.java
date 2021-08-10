@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
+
 import kodlamaio.ReCapProject.business.abstracts.RentalService;
+import kodlamaio.ReCapProject.business.checks.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -44,11 +45,5 @@ public class RentalManager implements RentalService{
 	public DataResult<List<RentalDetailsDto>> getRentalDetail() {
 		return new SuccessDataResult<List<RentalDetailsDto>>(this.rentalDao.getRentalDetail());
 	}
-
-	
-	
-	
-	
-	
 
 }

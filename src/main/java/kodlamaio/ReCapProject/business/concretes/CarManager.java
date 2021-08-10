@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.ReCapProject.business.abstracts.CarPropertiesCheckService;
 import kodlamaio.ReCapProject.business.abstracts.CarService;
+import kodlamaio.ReCapProject.business.checks.abstracts.CarPropertiesCheckService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
@@ -77,10 +77,4 @@ public class CarManager implements CarService {
 		return new SuccessDataResult<List<CarDetailsDto>>(this.carDao.getCarDetails());
 	}
 
-	
-	
-	
-	
-	
-	
 }

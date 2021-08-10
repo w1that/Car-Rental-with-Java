@@ -15,10 +15,5 @@ public interface RentalDao extends JpaRepository<Rental, Integer>{
 	@Query("select new kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto(r.id,r.rentDate,r.returnDate,ca.dailyPrice,"
 			+ "ca.description,cu) From Rental r Inner Join r.car ca Inner Join r.customer cu")
 	List<RentalDetailsDto> getRentalDetail();
-//	private int id;
-//	private LocalDate rentDate;
-//	private LocalDate returnDate;
-//	private int dailyPrice;
-//	private String description;
-//	private Customer customer;
+
 }

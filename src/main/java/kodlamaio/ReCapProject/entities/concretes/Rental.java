@@ -24,14 +24,12 @@ public class Rental {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
-	//TODO şu rental'a eklemek için bir dto oluştursana. Spring videoları çeken bir adam vardı onu da izle. Her şeye dto yazıyordu
-	//TODO api'da sadece car-images-controller'da getByCarImageDetails çalışmıyor. ona bak gerekirse dto yazmaya çalış
-	//*************************************************************
+	private int id; 
+	
 	@Column(name="rent_date")
 	private LocalDate rentDate;
 	
-	@Column(name="return_date")
+	@Column(name="return_date") 
 	private LocalDate returnDate;
 	
 	@OneToOne

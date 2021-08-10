@@ -1,4 +1,4 @@
-package kodlamaio.ReCapProject.business.abstracts;
+package kodlamaio.ReCapProject.business.checks.abstracts;
 
 public interface CarPropertiesCheckService {
 	

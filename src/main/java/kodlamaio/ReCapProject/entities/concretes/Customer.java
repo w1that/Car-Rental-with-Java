@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,5 +31,9 @@ public class Customer extends User{
 	
 	@Column(name="company_name")
 	private String companyName;
+	
+	@Column(name="activation_code")
+	private String activationCode;
+	
 	
 }

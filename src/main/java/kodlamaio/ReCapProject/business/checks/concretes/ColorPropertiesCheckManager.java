@@ -1,9 +1,9 @@
-package kodlamaio.ReCapProject.business.concretes;
+package kodlamaio.ReCapProject.business.checks.concretes;
 
 
 import org.springframework.stereotype.Service;
 
-import kodlamaio.ReCapProject.business.abstracts.ColorPropertiesCheckService;
+import kodlamaio.ReCapProject.business.checks.abstracts.ColorPropertiesCheckService;
 import kodlamaio.ReCapProject.dataAccess.abstracts.ColorDao;
 import kodlamaio.ReCapProject.entities.concretes.Color;
 

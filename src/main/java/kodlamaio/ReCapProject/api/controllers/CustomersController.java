@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
+import kodlamaio.ReCapProject.dataAccess.abstracts.CustomerDao;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
 import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 
@@ -22,7 +23,6 @@ import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
 public class CustomersController {
 
 	private CustomerService customerService;
-
 	@Autowired
 	public CustomersController(CustomerService customerService) {
 		super();
@@ -34,9 +34,14 @@ public class CustomersController {
 		return this.customerService.getAll();
 	}
 	
-	@PostMapping("/add")
-	public Result add(@RequestBody Customer customer) {
-		return this.customerService.add(customer);
+	@PostMapping("/sendActivationCode")
+	public Result sendActivationCode(@RequestBody Customer customer) {
+		return this.customerService.sendActivationCode(customer);
+	}
+	
+	@PostMapping("/activateCustomer")
+	public Result activateCustomer(@RequestParam String enteredActivationCode, @RequestParam int customerId) {
+		return this.customerService.activateCustomer(enteredActivationCode, customerId);
 	}
 	
 	@GetMapping("/getCustomerDetails")

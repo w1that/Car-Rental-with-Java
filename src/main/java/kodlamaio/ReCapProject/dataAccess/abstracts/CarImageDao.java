@@ -13,7 +13,7 @@ public interface CarImageDao extends JpaRepository<CarImage, Integer>{
 	List<CarImage> getByCarId(int carId);
 	
 	@Query("select new kodlamaio.ReCapProject.entities.dtos.CarImageDetailsDto(c.id, ca.id, c.createdAt, c.imagePath)"
-			+ "From CarImage c Inner Join Car ca")
+			+ "From CarImage c Inner Join c.car ca")
 	List<CarImageDetailsDto> getCarImageDetails();
 }
 

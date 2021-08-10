@@ -1,8 +1,8 @@
-package kodlamaio.ReCapProject.business.concretes;
+package kodlamaio.ReCapProject.business.checks.concretes;
 
 import org.springframework.stereotype.Service;
 
-import kodlamaio.ReCapProject.business.abstracts.CarPropertiesCheckService;
+import kodlamaio.ReCapProject.business.checks.abstracts.CarPropertiesCheckService;
 
 @Service
 public class CarPropertiesCheckManager implements CarPropertiesCheckService {

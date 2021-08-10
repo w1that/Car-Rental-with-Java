@@ -1,8 +1,9 @@
-package kodlamaio.ReCapProject.business.concretes;
+package kodlamaio.ReCapProject.business.checks.concretes;
 
 import java.util.Objects;
 import org.springframework.stereotype.Service;
-import kodlamaio.ReCapProject.business.abstracts.RentalAvailabilityCheckService;
+
+import kodlamaio.ReCapProject.business.checks.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
 
 @Service
