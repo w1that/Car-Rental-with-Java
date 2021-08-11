@@ -3,6 +3,7 @@ package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
 import kodlamaio.ReCapProject.business.checks.abstracts.CustomerPropertiesCheckService;
@@ -27,7 +28,8 @@ public class CustomerManager implements CustomerService{
 	
 	@Autowired
 	public CustomerManager(CustomerDao customerDao, CustomerPropertiesCheckService customerPropertiesCheckService
-			,EmailSenderService emailService, ActivatorService activatorService) {
+			,EmailSenderService emailService, ActivatorService activatorService
+			) {
 		super();
 		this.customerDao = customerDao;
 		this.customerPropertiesCheckService=customerPropertiesCheckService;
@@ -41,15 +43,22 @@ public class CustomerManager implements CustomerService{
 	}
 
 	@Override
-	public Result sendActivationCode(Customer customer) {
+	public Result sendActivationCode(Customer customer)  {
 		String activationCode = activatorService.generateActivationCode();
 		customer.setActivationCode(activationCode);
 		
-		emailService.sendSimpleEmail(
-				customer.getEmail(),
-				"http://localhost:8080/swagger-ui.html#/customers-controller/"+activationCode,
-				"aktivasyon kodu"
-				); 
+		try {
+			emailService.sendSimpleEmail(
+					customer.getEmail(),
+					"Sayın " +customer.getFirstName().substring(0, 1).toUpperCase() + customer.getFirstName().substring(1) + " " + customer.getLastName().toUpperCase()+ " Hoşgeldiniz! \nHesabınızı aktif etmeniz ve araç kiralama imkanı için aktivasyon kodu: \n\n"+activationCode,
+					"aktivasyon kodu"
+					); 
+		}catch( Exception e ){
+			return new ErrorResult("mail gönderilemedi");
+		}
+		
+		String encoded = new BCryptPasswordEncoder().encode(customer.getPassword());
+		customer.setPassword(encoded);
 		this.customerDao.save(customer);
 		System.out.println(activationCode);
 		return new SuccessResult("aktivasyon kodu gönderildi: " + customer.getEmail());

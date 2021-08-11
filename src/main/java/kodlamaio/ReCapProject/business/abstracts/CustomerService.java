@@ -12,6 +12,8 @@ public interface CustomerService {
 	DataResult<List<Customer>> getAll();
 	Result sendActivationCode(Customer customer);
 	Result activateCustomer(String enteredCode, int customerId);
+	
+	
 	Result deleteByCustomerId(int id);
 	
 	DataResult<List<CustomerDetailsDto>> getCustomerDetails();

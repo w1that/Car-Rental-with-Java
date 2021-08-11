@@ -22,4 +22,6 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	@Modifying
 	@Query("update Customer c set c.isActivated=true where c.id=:id ")
 	void setActivated(int id);
+	
+	Customer getByEmail(String email);
 }
