@@ -21,7 +21,7 @@ public class EmailSenderService {
 	public void sendSimpleEmail(String mailTo, String body, String subject) throws MailException, InterruptedException {
 		
 		System.out.println("sleep");
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 		
 		System.out.println("sending email");
 		SimpleMailMessage message = new SimpleMailMessage();
