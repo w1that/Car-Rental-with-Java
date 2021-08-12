@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import kodlamaio.ReCapProject.business.abstracts.CarImageService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.imageUpload.ImageUploadService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
@@ -38,9 +39,9 @@ public class CarImageManager implements CarImageService{
 			carImage.setImagePath(uploadedImage.get("url"));
 			this.carImageDao.save(carImage);
 			
-			return new SuccessResult();
+			return new SuccessResult(Messages.photoAdded);
 		}
-		return new ErrorResult("en fazla 5 resim olabilir");
+		return new ErrorResult(Messages.photoNumberError);
 		
 	}
 
@@ -62,7 +63,7 @@ public class CarImageManager implements CarImageService{
 	@Override
 	public Result deleteById(int id) {
 		this.carImageDao.deleteById(id);
-		return new SuccessResult("resim silindi");
+		return new SuccessResult(Messages.photoDeleted);
 	}
 
 }

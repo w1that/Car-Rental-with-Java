@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.ColorService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -32,14 +33,14 @@ public class ColorManager  implements ColorService{
 	public Result add(Color color) {
 		
 		this.colorDao.save(color);
-		return new SuccessResult(color.getName() +" eklendi");
+		return new SuccessResult(Messages.colorAdded);
 		
 	}
 
 	@Override
 	public Result deleteById(int id) {
 		this.colorDao.deleteById(id);
-		return new SuccessResult("renk başarıyla silindi");
+		return new SuccessResult(Messages.colorDeleted);
 	}
 
 	@Override

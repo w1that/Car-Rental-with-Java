@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import kodlamaio.ReCapProject.business.abstracts.CustomerService;
 import kodlamaio.ReCapProject.business.checks.abstracts.CustomerPropertiesCheckService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.emailSender.ActivatorService;
 import kodlamaio.ReCapProject.core.utilities.emailSender.EmailSenderService;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
@@ -35,7 +36,7 @@ public class CustomerManager implements CustomerService{
 	@Override
 	public Result deleteByCustomerId(int id) {
 		this.customerDao.deleteById(id);
-		return new SuccessResult("Müşteri silindi");
+		return new SuccessResult(Messages.customerDeleted);
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class CustomerManager implements CustomerService{
 	public Result add(Customer customer) {
 		
 		this.customerDao.save(customer);
-		return new SuccessResult("Müşteri eklendi");
+		return new SuccessResult(Messages.customerAdded);
 	
 	}
 		

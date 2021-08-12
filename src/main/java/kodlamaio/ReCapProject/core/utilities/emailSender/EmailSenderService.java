@@ -24,17 +24,19 @@ public class EmailSenderService {
 		Thread.sleep(5000);
 		
 		System.out.println("sending email");
-		SimpleMailMessage message = new SimpleMailMessage();
+		try {
+			SimpleMailMessage message = new SimpleMailMessage();
+			
+			message.setFrom("mailval.spring@gmail.com");
+			message.setTo(mailTo);
+			message.setText(body);
+			message.setSubject(subject);
+			mailSender.send(message);
+			System.out.println("email sent");
+		} catch (org.springframework.mail.MailSendException e) {      //TODO burayı result dönecek şekilde ayarla
+			System.out.println("email is not valid");
+		}
 		
-		message.setFrom("mailval.spring@gmail.com");
-		message.setTo(mailTo);
-		message.setText(body);
-		message.setSubject(subject);
-		//Login'i ayırdığın gibi register'ı da ayır. ***********************************************
-		//messages ekle
-		//şu isteklerdeki parametreleri de ayarlamaya çalış vakit ayır
-		mailSender.send(message);
-		System.out.println("email sent");
 		
 	}
 }

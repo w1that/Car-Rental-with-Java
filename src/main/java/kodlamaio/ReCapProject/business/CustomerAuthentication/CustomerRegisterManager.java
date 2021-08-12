@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.checks.abstracts.CustomerPropertiesCheckService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.emailSender.ActivatorService;
 import kodlamaio.ReCapProject.core.utilities.emailSender.EmailSenderService;
 import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
@@ -35,18 +36,18 @@ public class CustomerRegisterManager implements CustomerRegisterService{
 			try {
 				emailService.sendSimpleEmail(
 						customer.getEmail(),
-						"Sayın " +customer.getFirstName().substring(0, 1).toUpperCase() + customer.getFirstName().substring(1) + " " + customer.getLastName().toUpperCase()+ " Hoşgeldiniz! \nHesabınızı aktif etmeniz ve araç kiralama imkanı için aktivasyon kodu: \n\n"+activationCode,
-						"aktivasyon kodu"
+						Messages.messageBody(customer, activationCode),
+						Messages.messageSubject
 						); 
 			}catch( Exception e ){
-				return new ErrorResult("mail gönderilemedi");
+				return new ErrorResult(Messages.emailValidError);
 			}
 			
 			String encoded = new BCryptPasswordEncoder().encode(customer.getPassword());
 			customer.setPassword(encoded);
 			this.customerDao.save(customer);
 			System.out.println(activationCode);
-			return new SuccessResult("aktivasyon kodu gönderildi: " + customer.getEmail());
+			return new SuccessResult(Messages.activationCodeSent(customer));
 		}
 		return this.customerPropertiesCheckService.checkIfRegistrationRulesAppropriate(customer);
 		
@@ -58,10 +59,10 @@ public class CustomerRegisterManager implements CustomerRegisterService{
 	public Result activateCustomer(String enteredCode, int customerId) {
 		if(enteredCode.equals(this.customerDao.getById(customerId).getActivationCode())) {
 			this.customerDao.setActivated(customerId);
-			return new SuccessResult("kullanıcı aktif edildi");
+			return new SuccessResult(Messages.customerActivated);
 		}
 		
-		return new ErrorResult("girilen kod eşleşmedi");
+		return new ErrorResult(Messages.activationCodeError);
 	}
 
 }

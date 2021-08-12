@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.business.checks.abstracts.RentalAvailabilityCheckService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -37,7 +38,7 @@ public class RentalManager implements RentalService{
 	public Result add(Rental rental) {	
 		rental.setRentDate(LocalDate.now());
 		this.rentalDao.save(rental);
-		return new SuccessResult("rental eklendi");
+		return new SuccessResult(Messages.rentalAdded);
 		
 	}
 

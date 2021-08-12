@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.abstracts.CarService;
 import kodlamaio.ReCapProject.business.checks.abstracts.CarPropertiesCheckService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
@@ -43,10 +44,10 @@ public class CarManager implements CarService {
 		if(carPropertiesCheckService.checkIfDailyPriceMoreThanZero(car.getDailyPrice()) && 
 				carPropertiesCheckService.checkIfNameHasAtLeastTwoCharacters(car.getDescription())) {
 			this.carDao.save(car);
-			return new SuccessResult("araç eklendi");
+			return new SuccessResult(Messages.carAdded);
 		}
 		else {
-			return new ErrorResult("araç eklenemedi");
+			return new ErrorResult(Messages.carCouldntAdded);
 		}
 	}
 
@@ -68,7 +69,7 @@ public class CarManager implements CarService {
 	@Override
 	public Result deleteById(int id) {
 		this.carDao.deleteById(id);
-		return new SuccessResult("araç başarıyla silindi");
+		return new SuccessResult(Messages.carDeleted);
 		
 	}
 

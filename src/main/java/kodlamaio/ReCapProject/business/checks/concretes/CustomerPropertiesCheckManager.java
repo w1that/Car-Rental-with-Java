@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.ReCapProject.business.checks.abstracts.CustomerPropertiesCheckService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
@@ -19,13 +20,13 @@ public class CustomerPropertiesCheckManager implements CustomerPropertiesCheckSe
 	@Override
 	public Result checkIfRegistrationRulesAppropriate(Customer customer) {
 		if(customer.getFirstName().matches(".*\\d.*") || customer.getLastName().matches(".*\\d.*")) {
-			return new ErrorResult("isim/soyisim sayı içeremez");
+			return new ErrorResult(Messages.nameSurnameError);
 		}
 		if(customer.getPassword().length()<6) {
-			return new ErrorResult("şifre en az 6 karakter içermeli");
+			return new ErrorResult(Messages.passwordError);
 		}
 		if(this.customerDao.getByEmail(customer.getEmail())!=null) {
-			return new ErrorResult("email zaten kullanımda");
+			return new ErrorResult(Messages.emailError);
 		}
 		
 		return new SuccessResult();

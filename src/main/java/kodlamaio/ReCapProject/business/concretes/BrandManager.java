@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 
 import kodlamaio.ReCapProject.business.abstracts.BrandService;
+import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
@@ -33,7 +34,7 @@ public class BrandManager implements BrandService{
 	@Override
 	public Result add(Brand brand) {
 		this.brandDao.save(brand);
-		return new SuccessResult("eklendi");
+		return new SuccessResult(Messages.brandAdded);
 	}
 
 	@Override
