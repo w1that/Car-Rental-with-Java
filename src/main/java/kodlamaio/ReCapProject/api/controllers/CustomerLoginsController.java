@@ -11,7 +11,7 @@ import kodlamaio.ReCapProject.core.utilities.results.Result;
 
 @RestController
 @RequestMapping("/api/login")
-public class CustomersLoginController {
+public class CustomerLoginsController {
 
 	@Autowired
 	private CustomerLoginService customerLoginService;

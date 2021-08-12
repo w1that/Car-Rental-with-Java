@@ -38,44 +38,44 @@ public class ReCapProjectApplication {
 		SpringApplication.run(ReCapProjectApplication.class, args);
 	}
 	
-	@Autowired
-	private EmailSenderService service;
-	
-	@Bean
-    public Docket api() { 
-        return new Docket(DocumentationType.SWAGGER_2)  
-          .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("kodlamaio.ReCapProject"))        
-          .build();                                           
-    }
-	
-	@Bean
-	public Cloudinary cloudinary() {
-		return new Cloudinary(ObjectUtils.asMap(
-				"cloud_name", "dp39jsge0",
-				"api_key", "172183256184911",
-				"api_secret", "2iSM7c9p8xkmLZS89E-9-vMjKwI"));
-		
-	}
-	@Bean
-	public JavaMailSender getJavaMailSender() {
-	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	    mailSender.setHost("smtp.gmail.com");
-	    mailSender.setPort(587);
-	    
-	    mailSender.setUsername("mailval.spring@gmail.com");
-	    mailSender.setPassword("opljssnbjajxyjbo");
-	    
-	    Properties props = mailSender.getJavaMailProperties();
-	    props.put("mail.transport.protocol", "smtp");
-	    props.put("mail.smtp.auth", "true");
-	    props.put("mail.smtp.starttls.enable", "true");
-	    props.put("mail.debug", "true");
-	    
-	    return mailSender;
-	}
-	
-	
+//	@Autowired
+//	private EmailSenderService service;
+//	
+//	@Bean
+//    public Docket api() { 
+//        return new Docket(DocumentationType.SWAGGER_2)  
+//          .select()                                  
+//          .apis(RequestHandlerSelectors.basePackage("kodlamaio.ReCapProject"))        
+//          .build();                                           
+//    }
+//	
+//	@Bean
+//	public Cloudinary cloudinary() {
+//		return new Cloudinary(ObjectUtils.asMap(
+//				"cloud_name", "dp39jsge0",
+//				"api_key", "172183256184911",
+//				"api_secret", "2iSM7c9p8xkmLZS89E-9-vMjKwI"));
+//		
+//	}
+//	@Bean
+//	public JavaMailSender getJavaMailSender() {
+//	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//	    mailSender.setHost("smtp.gmail.com");
+//	    mailSender.setPort(587);
+//	    
+//	    mailSender.setUsername("mailval.spring@gmail.com");
+//	    mailSender.setPassword("opljssnbjajxyjbo");
+//	    
+//	    Properties props = mailSender.getJavaMailProperties();
+//	    props.put("mail.transport.protocol", "smtp");
+//	    props.put("mail.smtp.auth", "true");
+//	    props.put("mail.smtp.starttls.enable", "true");
+//	    props.put("mail.debug", "true");
+//	    
+//	    return mailSender;
+//	}
+//	
+//	
 
 	
 }

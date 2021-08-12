@@ -21,7 +21,7 @@ public class EmailSenderService {
 	public void sendSimpleEmail(String mailTo, String body, String subject) throws MailException, InterruptedException {
 		
 		System.out.println("sleep");
-		Thread.sleep(1000);
+		Thread.sleep(5000);
 		
 		System.out.println("sending email");
 		SimpleMailMessage message = new SimpleMailMessage();
@@ -30,7 +30,9 @@ public class EmailSenderService {
 		message.setTo(mailTo);
 		message.setText(body);
 		message.setSubject(subject);
-		
+		//Login'i ayırdığın gibi register'ı da ayır. ***********************************************
+		//messages ekle
+		//şu isteklerdeki parametreleri de ayarlamaya çalış vakit ayır
 		mailSender.send(message);
 		System.out.println("email sent");
 		

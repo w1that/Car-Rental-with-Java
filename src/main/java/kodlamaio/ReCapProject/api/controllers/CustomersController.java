@@ -34,15 +34,6 @@ public class CustomersController {
 		return this.customerService.getAll();
 	}
 	
-	@PostMapping("/sendActivationCode")
-	public Result sendActivationCode(@RequestBody Customer customer) {
-		return this.customerService.sendActivationCode(customer);
-	}
-	
-	@PostMapping("/activateCustomer")
-	public Result activateCustomer(@RequestParam String enteredActivationCode, @RequestParam int customerId) {
-		return this.customerService.activateCustomer(enteredActivationCode, customerId);
-	}
 	
 	@GetMapping("/getCustomerDetails")
 	public DataResult<List<CustomerDetailsDto>> getCustomerDetails(){

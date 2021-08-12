@@ -1,6 +1,9 @@
 package kodlamaio.ReCapProject.business.checks.abstracts;
 
+import kodlamaio.ReCapProject.core.utilities.results.Result;
+import kodlamaio.ReCapProject.entities.concretes.Customer;
+
 public interface CustomerPropertiesCheckService {
 
-	boolean checkIfEmailIsUnique(String email);
+	Result checkIfRegistrationRulesAppropriate(Customer customer);
 }

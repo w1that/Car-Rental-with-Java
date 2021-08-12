@@ -17,6 +17,6 @@ public class InMemoryAuthWebSecurityConfigurer
         auth.inMemoryAuthentication()
           .withUser("spring")
           .password(encoder.encode("secret"))
-          .roles("USER");
+          .roles("USER");  
     }
 }
