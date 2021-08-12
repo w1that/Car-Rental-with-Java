@@ -42,4 +42,7 @@ public class Car {
 	@JoinColumn(name="color_id")
 	private Color color;
 	
+	@Column(name="is_busy")
+	private boolean isBusy;
+	
 }

@@ -43,6 +43,7 @@ public class CarManager implements CarService {
 	public Result add(Car car) {
 		if(carPropertiesCheckService.checkIfDailyPriceMoreThanZero(car.getDailyPrice()) && 
 				carPropertiesCheckService.checkIfNameHasAtLeastTwoCharacters(car.getDescription())) {
+			car.setBusy(false);
 			this.carDao.save(car);
 			return new SuccessResult(Messages.carAdded);
 		}
@@ -76,6 +77,11 @@ public class CarManager implements CarService {
 	@Override
 	public DataResult<List<CarDetailsDto>> getCarDetails() {
 		return new SuccessDataResult<List<CarDetailsDto>>(this.carDao.getCarDetails());
+	}
+
+	@Override
+	public DataResult<List<Car>> getNotBusyCars() {
+		return new SuccessDataResult<List<Car>>(this.carDao.getNotBusyCars());
 	}
 
 }

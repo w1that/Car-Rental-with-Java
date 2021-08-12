@@ -9,18 +9,25 @@ import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.business.checks.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.business.constants.Messages;
 import kodlamaio.ReCapProject.core.utilities.results.DataResult;
+import kodlamaio.ReCapProject.core.utilities.results.ErrorResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessDataResult;
 import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
+import kodlamaio.ReCapProject.dataAccess.abstracts.CarDao;
+import kodlamaio.ReCapProject.dataAccess.abstracts.CustomerDao;
 import kodlamaio.ReCapProject.dataAccess.abstracts.RentalDao;
 import kodlamaio.ReCapProject.entities.concretes.Rental;
 import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 @Service
 public class RentalManager implements RentalService{
 	
-	
+	@Autowired
+	private CustomerDao customerDao;
 	private RentalDao rentalDao;
 	private RentalAvailabilityCheckService rentalAvailabilityCheckService;
+	
+	@Autowired
+	private CarDao carDao;
 	
 	@Autowired
 	public RentalManager(RentalDao rentalDao,RentalAvailabilityCheckService rentalAvailabilityCheckService) {
@@ -36,9 +43,18 @@ public class RentalManager implements RentalService{
 
 	@Override
 	public Result add(Rental rental) {	
+		if(!rentalAvailabilityCheckService.checkIfRentalAvailable(rental).isSuccess()) {
+			return rentalAvailabilityCheckService.checkIfRentalAvailable(rental);
+		}
 		rental.setRentDate(LocalDate.now());
+		rental.getCar().setBusy(true);
 		this.rentalDao.save(rental);
+		this.carDao.setBusy(rental.getCar().getId());
 		return new SuccessResult(Messages.rentalAdded);
+		
+		
+		
+		
 		
 	}
 

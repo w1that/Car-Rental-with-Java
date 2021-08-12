@@ -32,6 +32,7 @@ public class Customer extends User{
 	@Column(name="company_name")
 	private String companyName;
 	
+	
 	@Column(name="activation_code")
 	private String activationCode;
 	

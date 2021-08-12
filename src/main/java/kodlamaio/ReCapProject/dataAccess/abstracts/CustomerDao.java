@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.ReCapProject.entities.concretes.Customer;
 import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
+import kodlamaio.ReCapProject.entities.dtos.CustomerLoginDto;
 
 public interface CustomerDao extends JpaRepository<Customer, Integer>{
 
@@ -24,4 +25,6 @@ public interface CustomerDao extends JpaRepository<Customer, Integer>{
 	void setActivated(int id);
 	
 	Customer getByEmail(String email);
+	
+	
 }

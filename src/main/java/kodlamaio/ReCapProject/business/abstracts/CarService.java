@@ -18,6 +18,7 @@ public interface CarService {
 	DataResult<List<Car>> getCarsByBrandId(int id);
 	DataResult<List<Car>> getCarsByColorId(int id);
 	
-	
 	DataResult<List<CarDetailsDto>> getCarDetails();
+	DataResult<List<Car>> getNotBusyCars();
+	
 }

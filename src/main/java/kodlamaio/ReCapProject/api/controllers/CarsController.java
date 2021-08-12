@@ -62,4 +62,9 @@ public class CarsController {
 		return this.carService.getCarDetails();
 	}
 	
+	@GetMapping("/getNotBusyCars")
+	public DataResult<List<Car>> getNotBusyCars(){
+		return this.carService.getNotBusyCars();
+	}
+	
 }

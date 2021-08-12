@@ -18,6 +18,7 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.CustomerDao;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
 import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
+import kodlamaio.ReCapProject.entities.dtos.CustomerLoginDto;
 
 @Service
 public class CustomerManager implements CustomerService{
@@ -51,6 +52,8 @@ public class CustomerManager implements CustomerService{
 		return new SuccessResult(Messages.customerAdded);
 	
 	}
+
+	
 		
 
 }

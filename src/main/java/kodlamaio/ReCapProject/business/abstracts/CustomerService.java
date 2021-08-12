@@ -6,6 +6,7 @@ import kodlamaio.ReCapProject.core.utilities.results.DataResult;
 import kodlamaio.ReCapProject.core.utilities.results.Result;
 import kodlamaio.ReCapProject.entities.concretes.Customer;
 import kodlamaio.ReCapProject.entities.dtos.CustomerDetailsDto;
+import kodlamaio.ReCapProject.entities.dtos.CustomerLoginDto;
 
 public interface CustomerService {
 
@@ -17,4 +18,5 @@ public interface CustomerService {
 	Result deleteByCustomerId(int id);
 	
 	DataResult<List<CustomerDetailsDto>> getCustomerDetails();
+	
 }
