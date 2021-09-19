@@ -53,6 +53,11 @@ public class CustomerManager implements CustomerService{
 	
 	}
 
+	@Override
+	public DataResult<Customer> getByEmail(String email) {
+		return new SuccessDataResult<Customer>(this.customerDao.getByEmail(email));
+	}
+
 	
 		
 

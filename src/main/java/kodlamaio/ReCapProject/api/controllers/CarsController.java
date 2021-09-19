@@ -3,6 +3,7 @@ package kodlamaio.ReCapProject.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
 
 @RestController
 @RequestMapping("/api/cars")
+@CrossOrigin
 public class CarsController {
 
 	private CarService carService;
@@ -25,7 +27,7 @@ public class CarsController {
 	public CarsController(CarService carService) {
 		super();
 		this.carService = carService;
-	}
+	} 
 	
 	@GetMapping("/getAll")
 	public DataResult<List<Car>> getAll(){
@@ -66,5 +68,7 @@ public class CarsController {
 	public DataResult<List<Car>> getNotBusyCars(){
 		return this.carService.getNotBusyCars();
 	}
+	
+	
 	
 }

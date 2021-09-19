@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import kodlamaio.ReCapProject.entities.dtos.RentalDetailsDto;
 
 @RestController
 @RequestMapping("/api/rentals")
+@CrossOrigin
 public class RentalsController {
 
 	private RentalService rentalService;

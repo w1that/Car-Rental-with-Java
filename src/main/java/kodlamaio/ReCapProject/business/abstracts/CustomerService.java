@@ -16,7 +16,8 @@ public interface CustomerService {
 	Result add(Customer customer);
 	
 	Result deleteByCustomerId(int id);
-	
 	DataResult<List<CustomerDetailsDto>> getCustomerDetails();
+	
+	DataResult<Customer> getByEmail(String email);
 	
 }

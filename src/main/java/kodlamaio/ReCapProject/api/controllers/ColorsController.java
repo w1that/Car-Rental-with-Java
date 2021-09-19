@@ -3,6 +3,7 @@ package kodlamaio.ReCapProject.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import kodlamaio.ReCapProject.entities.concretes.Color;
 
 @RestController
 @RequestMapping("/api/colors")
+@CrossOrigin
 public class ColorsController {
 
 	private ColorService colorService;
