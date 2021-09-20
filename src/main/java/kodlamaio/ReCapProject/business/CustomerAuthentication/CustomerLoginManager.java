@@ -19,6 +19,9 @@ public class CustomerLoginManager implements CustomerLoginService {
 	
 	@Override
 	public Result logCustomerIn(String email, String password) {
+		if(customerDao.getByEmail(email) ==null) {
+			return new ErrorResult(Messages.loginError);
+		}
 		Customer customer = this.customerDao.getByEmail(email);
 		if(new BCryptPasswordEncoder().matches(password, customer.getPassword())) {
 			return new SuccessResult(Messages.loginSuccess);

@@ -20,11 +20,9 @@ public class CustomerLoginsController {
 
 	@PostMapping
 	public Result logCustomerIn(@RequestParam String email, @RequestParam String password) {
-		try {
+		
 			return this.customerLoginService.logCustomerIn(email, password);
-		} catch (NullPointerException ex) {
-			return new ErrorResult(ex.toString());
-		}
+		
 		
 	}
 	
