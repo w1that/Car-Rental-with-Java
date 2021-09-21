@@ -84,4 +84,12 @@ public class CarManager implements CarService {
 		return new SuccessDataResult<List<Car>>(this.carDao.getNotBusyCars());
 	}
 
+	@Override
+	public Result deleteAll() {
+		this.carDao.deleteAll();
+		return new SuccessResult("hepsi silindi");
+	}
+	
+	
+
 }

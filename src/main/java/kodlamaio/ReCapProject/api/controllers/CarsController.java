@@ -69,6 +69,9 @@ public class CarsController {
 		return this.carService.getNotBusyCars();
 	}
 	
-	
+	@DeleteMapping("/deleteAll")
+	public Result deleteAll() {
+		return this.carService.deleteAll();
+	}
 	
 }
