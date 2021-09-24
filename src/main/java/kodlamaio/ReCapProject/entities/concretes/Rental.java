@@ -27,7 +27,7 @@ public class Rental {
 	private int id; 
 	
 	@Column(name="rent_date")
-	private LocalDate rentDate;
+	private LocalDate rentDate = LocalDate.now();
 	
 	@Column(name="return_date") 
 	private LocalDate returnDate;

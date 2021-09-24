@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.ReCapProject.business.abstracts.CarService;
 import kodlamaio.ReCapProject.business.abstracts.RentalService;
 import kodlamaio.ReCapProject.business.checks.abstracts.RentalAvailabilityCheckService;
 import kodlamaio.ReCapProject.business.constants.Messages;
@@ -30,6 +31,9 @@ public class RentalManager implements RentalService{
 	private CarDao carDao;
 	
 	@Autowired
+	private CarService carService;
+	
+	@Autowired
 	public RentalManager(RentalDao rentalDao,RentalAvailabilityCheckService rentalAvailabilityCheckService) {
 		super();
 		this.rentalDao = rentalDao;
@@ -41,7 +45,7 @@ public class RentalManager implements RentalService{
 		return new SuccessDataResult<List<Rental>>(this.rentalDao.findAll());
 	}
 
-	@Override
+	/*@Override
 	public Result add(Rental rental) {	
 		if(!rentalAvailabilityCheckService.checkIfRentalAvailable(rental).isSuccess()) {
 			return rentalAvailabilityCheckService.checkIfRentalAvailable(rental);
@@ -56,11 +60,46 @@ public class RentalManager implements RentalService{
 		
 		
 		
+		
+	}*/
+	
+	public Result add(int customerId, int carId) {
+		if(rentalAvailabilityCheckService.checkIfRentalAvailable(customerId, carId)) {
+			Rental rental = new Rental();
+			rental.setCar(carDao.getById(carId));
+			rental.setCustomer(customerDao.getById(customerId));
+			
+			rentalDao.save(rental);
+			carDao.setBusy(carId);
+			return new SuccessResult("success");
+		}
+		return new ErrorResult("error");
 	}
 
 	@Override
 	public DataResult<List<RentalDetailsDto>> getRentalDetail() {
 		return new SuccessDataResult<List<RentalDetailsDto>>(this.rentalDao.getRentalDetail());
 	}
+
+	@Override
+	public Result deleteById(int id) {
+		this.rentalDao.deleteById(id);
+		return new SuccessResult("successfully removed");
+	}
+
+	@Override
+	public Result setReturnDate(int id) {
+		rentalDao.getById(id).setReturnDate(LocalDate.now());
+		return new SuccessResult("Local date set");
+	}
+
+	/*@Override 
+	public Result deleteAll() {
+		this.rentalDao.deleteAll();
+		return new SuccessResult("successfully removed");
+
+	}*/
+
+	
 
 }

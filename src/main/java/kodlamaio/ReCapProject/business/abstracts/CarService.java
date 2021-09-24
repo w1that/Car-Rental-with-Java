@@ -15,6 +15,7 @@ public interface CarService {
 	Result add(Car car);
 	Result deleteById(int id);
 	Result deleteAll();
+	Result setNotBusy(int id);
 	
 	DataResult<List<Car>> getCarsByBrandId(int id);
 	DataResult<List<Car>> getCarsByColorId(int id);

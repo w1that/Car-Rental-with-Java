@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,6 +73,11 @@ public class CarsController {
 	@DeleteMapping("/deleteAll")
 	public Result deleteAll() {
 		return this.carService.deleteAll();
+	}
+	
+	@PutMapping("/setNotBusy")
+	public Result setNotBusy(@RequestParam int id) {
+		return this.carService.setNotBusy(id);
 	}
 	
 }

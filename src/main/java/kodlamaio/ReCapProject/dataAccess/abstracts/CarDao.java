@@ -26,6 +26,11 @@ public interface CarDao extends JpaRepository<Car, Integer>  {
 	@Query("update Car c set c.isBusy=true where c.id=:id ")
 	void setBusy(int id);
 	
+	@Transactional
+	@Modifying
+	@Query("update Car c set c.isBusy=false where c.id=:id ")
+	void setNotBusy(int id);
+	
 	@Query("select c from Car c where c.isBusy=false")
 	List<Car> getNotBusyCars();
 	

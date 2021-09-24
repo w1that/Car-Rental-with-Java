@@ -5,5 +5,6 @@ import kodlamaio.ReCapProject.entities.concretes.Rental;
 
 public interface RentalAvailabilityCheckService {
 
-	Result checkIfRentalAvailable(Rental rental);
+	/*Result checkIfRentalAvailable(Rental rental);*/
+	boolean checkIfRentalAvailable(int customerId, int carId);
 }

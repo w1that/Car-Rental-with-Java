@@ -2,6 +2,8 @@ package kodlamaio.ReCapProject.business.concretes;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,6 @@ import kodlamaio.ReCapProject.core.utilities.results.SuccessResult;
 import kodlamaio.ReCapProject.dataAccess.abstracts.CarDao;
 import kodlamaio.ReCapProject.entities.concretes.Car;
 import kodlamaio.ReCapProject.entities.dtos.CarDetailsDto;
-
 @Service
 public class CarManager implements CarService {
 
@@ -88,6 +89,12 @@ public class CarManager implements CarService {
 	public Result deleteAll() {
 		this.carDao.deleteAll();
 		return new SuccessResult("hepsi silindi");
+	}
+
+	@Override
+	public Result setNotBusy(int id) {
+		this.carDao.setNotBusy(id);
+		return new SuccessResult("set not busy");
 	}
 	
 	

@@ -1,5 +1,6 @@
 package kodlamaio.ReCapProject.entities.concretes;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +28,7 @@ public class Car {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
+	
 	
 	@Column(name="model_year")
 	private int modelYear;
